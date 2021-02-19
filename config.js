@@ -1,12 +1,15 @@
-import React ,{Component} from 'react'
-import Firebase from 'firebase';
-let config = {
-  apiKey: "AIzaSyCK0r2tsiKScuX6vsVejfJh7P0dEeV4lhc",
-    authDomain: "buzzer-app-6f69b.firebaseapp.com",
-    databaseURL: "https://buzzer-app-6f69b.firebaseio.com",
-    projectId: "buzzer-app-6f69b",
-    storageBucket: "buzzer-app-6f69b.appspot.com",
-    messagingSenderId: "270542842127"
+import * as firebase from 'firebase'
+require('@firebase/firestore')
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDdIbD40mIOWYgMAL3ghe0Zxm6Fex1X5Gs",
+  authDomain: "project-71-abfb1.firebaseapp.com",
+  projectId: "project-71-abfb1",
+  storageBucket: "project-71-abfb1.appspot.com",
+  messagingSenderId: "490210521274",
+  appId: "1:490210521274:web:bcb9f92aa78e32e4441283"
 };
-let app= Firebase.initializeApp(config);
-export const db = app.database();
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  export default firebase.firestore();

@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+   import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button,TextInput,TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator} from 'react-navigation-tabs';
-import {BarCodeScanner} from 'expo-barcode-scanner';
-import * as Permissions from 'expo-permissions';
 import {Header} from 'react-native-elements';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-
+import firebase from 'firebase';
+import db from '../config'
 // You can import from local files
 
 
@@ -25,7 +24,13 @@ export default class WriteScreen extends Component {
     };
   }
     
-
+  submitStory = ()=>{
+    db.collection('Story').doc('Details').update({
+      StoryTitle:this.state.storyTitle,
+      Author:this.state.storyAuthor,
+      Story:this.state.story
+    }) 
+  }
   
   render() {
     
@@ -55,6 +60,8 @@ export default class WriteScreen extends Component {
           placeholder="Write Story Here"
           multiline={true}/>
         </SafeAreaProvider>
+        <TouchableOpacity style={styles.button} onPress={this.submitStory}>
+          <Text>Submit</Text></TouchableOpacity>
       </View>
     );
   }
@@ -84,5 +91,13 @@ const styles = StyleSheet.create({
     alignContent:'center',
     alignSelf:"center",
     marginTop:20   
+  },
+  button:{
+    marginTop:15,
+    alignSelf:'center',
+    width:70,
+    height:30,
+    backgroundColor:'red',
+    color:'green'
   }
 })
